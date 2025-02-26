@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/firebase";
 import { getAuth } from "firebase-admin/auth";
 import { initializeApp, getApps, cert } from "firebase-admin/app";
 
@@ -14,7 +13,7 @@ if (!getApps().length) {
   });
 }
 
-export async function GET(request: Request) {
+export async function GET(request: Request): Promise<Response> {
   try {
     const authHeader = request.headers.get("Authorization");
 
