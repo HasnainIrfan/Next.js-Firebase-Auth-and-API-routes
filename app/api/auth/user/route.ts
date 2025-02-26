@@ -13,7 +13,7 @@ if (!getApps().length) {
   });
 }
 
-export async function GET(request: Request): Promise<Response> {
+export const GET = async (request: Request): Promise<Response> => {
   try {
     const authHeader = request.headers.get("Authorization");
 
@@ -31,4 +31,4 @@ export async function GET(request: Request): Promise<Response> {
   } catch (error) {
     return NextResponse.json({ error: "Not authorized" }, { status: 401 });
   }
-}
+};
