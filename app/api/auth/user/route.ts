@@ -13,7 +13,11 @@ if (!getApps().length) {
   });
 }
 
-export const GET = async (request: Request): Promise<Response> => {
+// Add explicit export for route handler configuration
+export const runtime = "edge"; // Optional: Add this if you want to use edge runtime
+export const dynamic = "force-dynamic"; // This ensures the route is not statically optimized
+
+export async function GET(request: Request): Promise<Response> {
   try {
     const authHeader = request.headers.get("Authorization");
 
@@ -31,4 +35,4 @@ export const GET = async (request: Request): Promise<Response> => {
   } catch (error) {
     return NextResponse.json({ error: "Not authorized" }, { status: 401 });
   }
-};
+}
